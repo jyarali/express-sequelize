@@ -3,7 +3,7 @@ const localStrategy = require("passport-local").Strategy;
 const JWTstrategy = require("passport-jwt").Strategy;
 // require dotenv and initialize config
 const dotenv = require("dotenv");
-dotenv.config({ path: "./config/config.env" });
+dotenv.config({ path: "../.env" });
 //We use this to extract the JWT sent by the user
 const ExtractJwt = require("passport-jwt").ExtractJwt;
 const User = require("../models/User");

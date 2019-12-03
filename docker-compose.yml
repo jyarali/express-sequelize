@@ -1,0 +1,32 @@
+version: "3.0"
+services:
+  app:
+    image: node:alpine
+    depends_on:
+      - db
+    working_dir: /home/node/app
+    command: ["./wait-for-it.sh", "db:3306", "--", "npm", "run", "dev"]
+    ports:
+      - "80:5000"
+    volumes:
+      - ./:/home/node/app
+      - ./node_modules/:/home/node/app/node_modules
+
+  db:
+    image: mysql:5.6.46
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - 3306:3306
+
+  adminer:
+    image: adminer
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - 8080:8080

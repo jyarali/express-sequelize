@@ -2,7 +2,7 @@
 const express = require("express");
 // require dotenv and initialize config
 const dotenv = require("dotenv");
-dotenv.config({ path: "./config/config.env" });
+dotenv.config({ path: "./.env" });
 // setup db connection using sequelize
 const sequelize = require("./utils/database");
 // require authentication
